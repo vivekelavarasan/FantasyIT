@@ -1,0 +1,6 @@
+﻿<NavigationWindow x:Class="FITPrototype.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Fantasy IT" Height="450" Width="525" Background="#FF0E0E0E" Foreground="#FFC7C7C7" Source="MainMenu.xaml" SizeToContent="WidthAndHeight">
+    
+</NavigationWindow>

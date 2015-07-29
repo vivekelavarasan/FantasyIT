@@ -1,0 +1,11 @@
+// Teams have four members each for now, and each member has an individual point value, format is "Team member 1, point value 1, team member 2..." etc. There are eight teams.
+// Leaderboard should include team totals as well as individual point value for each member
+// First number is team place
+1 John 108 Jack 124 Kathy 99 Mark 85
+2 Ben 112 Lucy 59 Landon 135 Jane 104
+3 Zach 85 Zoe 97 Beth 116 Jose 117
+4 Oleg 137 Joseph 124 Peter 114 Paul 75
+5 Gina 140 Amy 112 Maria 126 Quentin 81
+6 Oscar 69 Ralph 92 Rachael 132 Mike 121
+7 Brian 154 Rodger 100 Nick 91 Ted 80
+8 Helga 122 Phoebe 110 Ellen 77 Terry 91

@@ -1,0 +1,21 @@
+﻿<Page x:Class="FITPrototype.LeagueRules"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="500"
+	Title="LeagueRules">
+
+    <Grid Background="#FF273B57">
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+        <TextBlock HorizontalAlignment="Left" Height="40" Margin="11,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="134" Text="League Rules" FontSize="18"/>
+        <TextBlock x:Name="teamRules" HorizontalAlignment="Left" Height="113" Margin="11,50,0,0" TextWrapping="Wrap" Text="Team Rules" VerticalAlignment="Top" Width="266"/>
+        <TextBlock x:Name="seasonRules" HorizontalAlignment="Left" Height="113" Margin="11,170,0,0" TextWrapping="Wrap" Text="League Rules" VerticalAlignment="Top" Width="266"/>
+        <Calendar Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="182" Margin="294,83,0,0" VerticalAlignment="Top" Width="196" />
+        <TextBlock x:Name="seasonCal" HorizontalAlignment="Left" Height="28" Margin="332,55,0,0" TextWrapping="Wrap" Text="Season Calendar" VerticalAlignment="Top" Width="121" FontSize="16"/>
+
+    </Grid>
+</Page>

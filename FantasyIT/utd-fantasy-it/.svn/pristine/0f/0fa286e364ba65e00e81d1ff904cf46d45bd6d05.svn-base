@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Xml.Serialization;
+using System.Diagnostics;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FITPrototype
+{
+    public class LeagueDataParser
+    {
+        #region Class members
+        private League storedRules;
+
+        public bool initialized; // whether or not the league member has been initialized with proper values
+
+        public League StoredRules
+        {
+            get
+            {
+                return storedRules;
+            }
+        }
+        #endregion
+
+        #region Constructors
+        public LeagueDataParser()
+        {
+            storedRules = new League();
+            initialized = false;
+        }
+
+        public LeagueDataParser(String fname)
+        {
+            if (File.Exists(fname))
+            {
+                storedRules = LoadRules(fname);
+                initialized = true;
+            }
+            else
+            {
+                storedRules = new League();
+                initialized = false;
+            }
+        }
+        #endregion
+
+        // Serialize and save all league rules to a file (static?)
+        public void SaveRules(League lr, string file)
+        {
+            string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string fileName = dir + @"\" + file;
+
+            //creates a backup file that we can revert to
+            string backup = Path.ChangeExtension(fileName, ".old");
+            if (File.Exists(fileName))
+            {
+                if (File.Exists(backup))
+                    File.Delete(backup);
+
+                File.Move(fileName, backup);
+            }
+
+            //serializes the list of teams
+            using (FileStream fstream = new FileStream(fileName, FileMode.Create))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(League));
+                serializer.Serialize(fstream, lr);
+                fstream.Flush();
+                fstream.Close();
+            }
+        }
+
+        //Loads the league rules from an external file
+        public static League LoadRules(string file)
+        {
+            string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string fileName = dir + @"\" + file;
+
+            if (!File.Exists(fileName))
+                throw new FileNotFoundException("The league rules data could not be found", fileName);
+
+            League contents = new League();
+
+            using (FileStream fstream = new FileStream(fileName, FileMode.Open))
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(League));
+                contents = (League)serializer.Deserialize(fstream);
+            }
+            return contents;
+        }
+    }
+}

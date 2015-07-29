@@ -1,0 +1,58 @@
+This describes the format that league rules will be stored in.
+The file will be stored as "leagueconfig.txt".
+They will be stored in a .txt file (.cfg if I can get that to work).
+// will denote a comment, just like in normal C-based language compilers. The parser will ignore this line.
+Each line will denote a different parameter for league rules. The parameters will be unlabelled in the file.
+Later, I'll probably add automatic commenting that denotes each line as a certain parameter for users' convenience.
+The parameters will be stored in this order:
+int membersPerTeam
+int extrasPerTeam
+byte playoffTeams
+byte gameNight
+byte simultaneousTeams
+bool mutualMatching
+bool teamSuperbowl
+DateTime draftTime (this will be six integers)
+DateTime seasonStart (this will be three integers, and so will the rest of the DateTime parameters)
+DateTime seasonEnd
+DateTime playoffStart
+List<Team> leagueTeams
+List<Employee> freeAgents
+
+//Example:
+//int membersPerTeam
+8
+//int extrasPerTeam
+2
+//byte playoffTeams
+8
+//byte gameNight: 0 = Thursday, 1 = Sunday, 2 = Monday
+0
+//byte simultaneousTeams
+1
+//bool mutualMatching
+true
+//bool teamSuperbowl
+false
+//DateTime draftTime, this denotes August 3rd 2014 at 0800 sharp
+2014 8 3 8 0 0 
+//DateTime seasonStart, this denotes August 10th 2014
+2014 8 10
+//DateTime seasonEnd, this can never be smaller than 6 weeks from seasonStart
+2014 12 16
+//DateTime playoffStart, this can be 0-2 weeks later than seasonEnd
+2014 12 30
+//Team registered in league; name has spaces replaced with underscores, use String.Replace('_',' ') to display properly on GUI
+//TeamName Place NumberOfMembers
+TEAM_The_Rough_Riders 3 8
+//Team member list, employee names also have spaces replaced with underscores
+//EmployeeName Points Role (integer)
+Bob_Johnson 223 1
+John_Bobson 201 2
+Mary_Sue 206 2
+Gary_Stu 189 3
+Ben_Affleck 199 3
+Jerry_Seinfeld 212 4
+Huey_Louis 193 5
+Rosa_Parks 219 6
+

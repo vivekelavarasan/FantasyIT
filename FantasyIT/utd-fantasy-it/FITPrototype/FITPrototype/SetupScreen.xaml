@@ -1,0 +1,95 @@
+﻿<Page x:Class="FITPrototype.SetupScreen"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="330" d:DesignWidth="500"
+	Title="SetupScreen">
+
+    <Grid Background="#FF273B57">
+        <TextBlock HorizontalAlignment="Left" Height="32" Margin="10,10,0,0" TextWrapping="Wrap" Text="League Setup" VerticalAlignment="Top" Width="157" FontSize="18"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="10,47,0,0" TextWrapping="Wrap" Text="Team Size" VerticalAlignment="Top" Width="110" FontSize="16"> 
+            <TextBlock.ToolTip>
+                <TextBlock>Number of players that play for Fantasy IT team in a game.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <ComboBox x:Name="cb_teamSize" HorizontalAlignment="Left" Height="25" Margin="31,74,0,0" VerticalAlignment="Top" Width="50"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="10,104,0,0" TextWrapping="Wrap" Text="Team Extras" VerticalAlignment="Top" Width="89" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>Extra members of a team that can be switched out during roster selection.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <ComboBox x:Name="cb_teamExtra" HorizontalAlignment="Left" Height="25" Margin="31,131,0,0" VerticalAlignment="Top" Width="50"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="10,161,0,0" TextWrapping="Wrap" Text="Game Night" VerticalAlignment="Top" Width="90" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>Each week on this night Fantasy IT teams battle it out and points are locked in based on current rosters.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <ComboBox x:Name="cb_gameNight" HorizontalAlignment="Left" Height="25" Margin="11,188,0,0" VerticalAlignment="Top" Width="90"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="10,218,0,0" TextWrapping="Wrap" Text="Player Exclusivity" VerticalAlignment="Top" Width="120" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>A single player can participate on x different teams.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <ComboBox x:Name="cb_playerExclusive" HorizontalAlignment="Left" Height="25" Margin="31,245,0,0" VerticalAlignment="Top" Width="50"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="167,47,0,0" TextWrapping="Wrap" Text="Playoff Size" VerticalAlignment="Top" Width="92" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>Number of Fantasy IT teams that play during the playoffs.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <ComboBox x:Name="cb_playoffSize" HorizontalAlignment="Left" Height="25" Margin="187,74,0,0" VerticalAlignment="Top" Width="50"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="167,104,0,0" TextWrapping="Wrap" Text="Season Duration" VerticalAlignment="Top" Width="123" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>Number of weeks that regular season takes place, after which playoff for top teams begin.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <ComboBox x:Name="cb_seasonDuration" HorizontalAlignment="Left" Height="25" Margin="187,131,0,0" VerticalAlignment="Top" Width="50"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="167,161,0,0" TextWrapping="Wrap" Text="Playoff Break" VerticalAlignment="Top" Width="123" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>Number of weeks between regular season and playoffs.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <ComboBox x:Name="cb_playoffBreak" HorizontalAlignment="Left" Height="25" Margin="187,188,0,0" VerticalAlignment="Top" Width="50"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="167,218,0,0" TextWrapping="Wrap" Text="Superbowl Project" VerticalAlignment="Top" Width="129" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>During the superbowl you may wish to give competing teams a specific project for extra points.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <RadioButton x:Name="rb_superbowlYes" Content="Yes" GroupName="SP" HorizontalAlignment="Left" Height="25" Margin="177,245,0,0" VerticalAlignment="Top" Width="45"/>
+        <RadioButton x:Name="rb_superbowlNo" Content="No" GroupName="SP" HorizontalAlignment="Left" Height="25" Margin="237,245,0,0" VerticalAlignment="Top" Width="45"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="336,47,0,0" TextWrapping="Wrap" Text="Draft Day" VerticalAlignment="Top" Width="77" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>Drafting players for teams takes place on this day and this day only.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <DatePicker x:Name="dp_draftDate" HorizontalAlignment="Left" Height="25" Margin="336,74,0,0" VerticalAlignment="Top" Width="145"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="336,104,0,0" TextWrapping="Wrap" Text="Season Start Date" VerticalAlignment="Top" Width="130" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>Regular season begins on this day.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <DatePicker x:Name="dp_seasonStartDate" HorizontalAlignment="Left" Height="25" Margin="336,131,0,0" VerticalAlignment="Top" Width="145"/>
+        
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="336,161,0,0" TextWrapping="Wrap" Text="Mutual Match" VerticalAlignment="Top" Width="105" FontSize="16">
+            <TextBlock.ToolTip>
+                <TextBlock>Players will be able to accept or reject team invitations if applied.</TextBlock>
+            </TextBlock.ToolTip>
+        </TextBlock>
+        <RadioButton x:Name="rb_mutualMatchYes" Content="Yes" GroupName="MM" HorizontalAlignment="Left" Height="25" Margin="351,188,0,0" VerticalAlignment="Top" Width="45"/>
+        <RadioButton x:Name="rb_mutualMatchNo" Content="No" GroupName="MM" HorizontalAlignment="Left" Height="25" Margin="401,188,0,0" VerticalAlignment="Top" Width="45"/>
+        
+        <Button x:Name="done" Content="Start League" HorizontalAlignment="Left" Height="25" Margin="336,221,0,0" VerticalAlignment="Top" Width="145" Click="done_Click"/>
+        <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Left" Height="25" Margin="336,253,0,0" VerticalAlignment="Top" Width="145" Click="cancel_Click"/>
+    </Grid>
+</Page>

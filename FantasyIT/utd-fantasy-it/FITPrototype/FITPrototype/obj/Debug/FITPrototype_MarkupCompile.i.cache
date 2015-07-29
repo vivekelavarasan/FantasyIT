@@ -1,0 +1,33 @@
+﻿FITPrototype
+
+
+winexe
+C#
+.cs
+<<<<<<< .mine
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\
+=======
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\
+>>>>>>> .r31
+FITPrototype
+none
+false
+DEBUG;TRACE
+<<<<<<< .mine
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\App.xaml
+=======
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\App.xaml
+>>>>>>> .r31
+7473812420
+
+<<<<<<< .mine
+20-1703862691
+12-1401562060
+=======
+21520856771
+13950764516
+>>>>>>> .r31
+CreateTeam.xaml;Leaderboard.xaml;LeagueRules.xaml;MainWindow.xaml;MainMenu.xaml;ManageTeam.xaml;SetupScreen.xaml;
+
+False
+

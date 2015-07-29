@@ -1,0 +1,343 @@
+﻿using System;
+using System.IO;
+using System.Text;
+using System.Data;
+using System.Collections.Generic;
+using System.Xml.Serialization;
+using System.Diagnostics;
+using GemBox.Spreadsheet;
+
+namespace FITPrototype
+{
+    public class TeamDataParser
+    {
+        /// <summary>
+        /// Wrapper for the filler data text file.
+        /// </summary>
+        
+        #region Class members
+        private FileInfo teamDataReader;
+        private StreamReader sr;
+        private List<Team> teams;
+		private List<Employee> employees;
+        #endregion
+
+        #region Constructors
+        public TeamDataParser()
+        {
+            SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
+			if(File.Exists("players.xml"))
+			{
+				employees = LoadEmployees("players.xml");
+				
+				teams = new List<Team>();
+                AssignTeams(employees, teams);
+
+				teams.Sort();
+				teams.Reverse();
+				int z = 1;
+				foreach(Team t in teams)
+				{
+					t.Place = z;
+					z++;
+				}
+			}
+			else
+			{
+				//teamDataReader = new FileInfo("fillerdata.txt");
+                teams = new List<Team>();
+                employees = LoadFromXls("SamplePoints.xls", "Main", 5, 10, 10);
+
+                AssignTeams(employees, teams);
+
+                /*
+				sr = new StreamReader(teamDataReader.FullName, System.Text.Encoding.Default);
+				String line;
+				while ((line = sr.ReadLine()) != null)
+				{
+					if (!line.Contains("//"))
+					{
+						String[] data = line.Split(' ');
+						decimal y;
+						if (Decimal.TryParse(data[0], out y)) // If the first character is a decimal...
+						{
+							int pl = (int)Decimal.Parse(data[0]);
+							List<Employee> me = new List<Employee>();
+							Employee m = new Employee();
+							for (int i = 1; i < data.Length; i++)
+							{
+								if (Decimal.TryParse(data[i], out y))
+								{
+									//m.SetPoints((int)Decimal.Parse(data[i]));
+									m.AddPoints((int)Decimal.Parse(data[i]));
+									me.Add(m);
+									m = new Employee();
+								}	
+								else
+									m.SetName(data[i]);
+							}
+							teams.Add(new Team(me));
+							employees.AddRange(me);
+						}
+					}
+				}*/
+
+				teams.Sort();
+				teams.Reverse();
+                int z = 1;
+                foreach (Team t in teams)
+                {
+                    t.Place = z;
+                    z++;
+                }
+
+				SaveEmployees(employees,"players.xml");
+				employees.Sort();
+			}
+        }
+        public TeamDataParser(String s)
+        {
+            SpreadsheetInfo.SetLicense("FREE-LIMITED-KEY");
+            teamDataReader = new FileInfo(s);
+            teams = new List<Team>();
+            sr = new StreamReader(teamDataReader.FullName, System.Text.Encoding.Default);
+            String line;
+            while ((line = sr.ReadLine()) != null)
+            {
+                if (!line.Contains("//"))
+                {
+                    String[] data = line.Split(' ');
+                    decimal y;
+                    if (Decimal.TryParse(data[0], out y)) // If the first character is a decimal...
+                    {
+                        int pl = (int)Decimal.Parse(data[0]);
+                        List<Employee> me = new List<Employee>();
+                        Employee m = new Employee();
+                        for (int i = 1; i <= data.Length; i++)
+                        {
+                            if (Decimal.TryParse(data[i], out y))
+                            {
+                                m.SetPoints((int)Decimal.Parse(data[i]));
+                                me.Add(m);
+                                m = new Employee();
+                            }
+                            else
+                                m.SetName(data[i]);
+                        }
+                        teams.Add(new Team(me, pl));
+                    }
+                }
+            }
+            teams.Sort();
+            int z = 1;
+            foreach (Team t in teams)
+            {
+                t.Place = z;
+                z++;
+            }
+        }
+        #endregion
+
+        public List<Team> GetTeams()
+        {
+            return teams;
+        }
+
+        public List<Employee> GetEmployees()
+        {
+            return employees;
+        }
+
+        public static void AssignTeams(List<Employee> emps, List<Team> teams) // Sorts employees into their proper teams.
+        {
+            Team tempTeam = new Team();
+            Team targetTeam = null;
+            string tempName;
+
+            foreach (Employee e in emps)
+            {
+                tempName = e.GetTeam();
+                tempTeam.AddMember(e);
+                tempTeam.TeamName = tempName;
+
+                targetTeam = teams.Find(t => t.TeamName.Equals(tempName));
+
+                if (targetTeam == null)
+                {
+                    teams.Add(tempTeam);
+                    tempTeam = new Team();
+                }
+                else
+                {
+                    targetTeam.AddMember(e);
+                    tempTeam = new Team();
+                }
+            }
+
+            foreach (Team t in teams) // Assign free agents reference
+            {
+                if(t.TeamName != "Free Agents")
+                {
+                    t.FreeAgents = teams[teams.Count-1]; // Free agents is always the last team
+                }
+            }
+        }
+
+        public static List<Employee> LoadFromXls(String fName, String sName, int members, int teamCount, int freeAgents) // 10 teams, 10 free agents
+        {
+            var workbook = ExcelFile.Load(fName);
+            ExcelWorksheet sheet = null;
+            List<Employee> contents = new List<Employee>();
+            foreach(ExcelWorksheet ew in workbook.Worksheets) // Select appropriate worksheet
+            {
+                if (ew.Name == sName)
+                    sheet = ew;
+            }
+            if (sheet != null)
+            {
+                var dataTable = sheet.CreateDataTable(new CreateDataTableOptions()
+                {
+                    StartRow = 3,
+                    StartColumn = 2,
+                    NumberOfRows = 65,
+                    NumberOfColumns = 19,
+                    ExtractDataOptions = ExtractDataOptions.StopAtFirstEmptyRow
+                });
+                Trace.WriteLine(dataTable.Rows.Count);
+                int c = 0;
+                int t = 0;
+                String teamName = "";
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    if(c==0)
+                    {
+                        t++;
+                        if (t <= teamCount)
+                            teamName = "Team " + t;
+                        else
+                            teamName = "Free Agents";
+                    }
+                    if (c < members || t > teamCount)
+                    {
+                        String name = (String)row[0];
+                        String role = (String)row[1];
+                        List<int> pbw = new List<int>();
+                        int points = 0;
+                        for (int i = 2; i < row.ItemArray.Length; i++)
+                        {
+                            if (i != 14)
+                            {
+                                pbw.Add((int)row[i]);
+                                points += (int)row[i];
+                            }
+                        }
+                        Employee e = new Employee(name, pbw, role, teamName);
+                        contents.Add(e);                        
+                    }
+                    c++;
+                    if(c >= members)
+                    {
+                        if (t <= teamCount)
+                            c = 0;
+                    }
+                }
+            }
+            else
+                throw new IOException("Sample data file formatted incorrectly; needs a sheet labelled \"Main\".");
+
+            return contents;
+        }
+		
+		//saves changes to the teams list to the teams file, should occur after every team/player transaction (?)
+		/*public static void SaveTeams(List<Team> tList,string file)
+		{
+			string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			string fileName = dir + @"\" + file;
+			
+			//creates a backup file that we can revert to
+			string backup = Path.ChangeExtension(fileName,".old");
+			if(File.Exists(fileName))
+			{
+				if(File.Exists(backup))
+					File.Delete(backup);
+					
+				File.Move(fileName,backup);
+			}
+			
+			//serializes the list of teams
+			using (FileStream fstream = new FileStream(fileName,FileMode.Create))
+			{
+				XmlSerializer serializer = new XmlSerializer(typeof(List<Team>));
+				serializer.Serialize(fstream,tList);
+				fstream.Flush();
+				fstream.Close();
+			}
+		}*/
+		
+		//saves changes to the free agents list to the free agents file, should occur after every team/player transaction (?)
+		public static void SaveEmployees(List<Employee> eList,string file)
+		{
+			string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			string fileName = dir + @"\" + file;
+			
+			//creates a backup file that we can revert to
+			string backup = Path.ChangeExtension(fileName,".old");
+			if(File.Exists(fileName))
+			{
+				if(File.Exists(backup))
+					File.Delete(backup);
+					
+				File.Move(fileName,backup);
+			}
+			
+			//serializes the list of teams
+			using (FileStream fstream = new FileStream(fileName,FileMode.Create))
+			{
+				XmlSerializer serializer = new XmlSerializer(typeof(List<Employee>));
+				serializer.Serialize(fstream,eList);
+				fstream.Flush();
+				fstream.Close();
+			}
+		}
+		
+		//Loads the list of teams from an external file
+		/*public static List<Team> LoadTeams(string file)
+		{
+			string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			string fileName = dir + @"\" + file;
+		
+			if(!File.Exists(fileName))
+				throw new FileNotFoundException("The team data could not be found",fileName);
+				
+			List<Team> contents;
+			
+			using(FileStream fstream = new FileStream(fileName,FileMode.Open))
+			{
+				XmlSerializer serializer = new XmlSerializer(typeof(List<Team>));
+				contents = (List<Team>)serializer.Deserialize(fstream);
+			}
+			
+			return contents;
+		}*/
+		
+		//Loads the list of free agents from an external file
+		public static List<Employee> LoadEmployees(string file)
+		{
+			string dir = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+			string fileName = dir + @"\" + file;
+			
+			if(!File.Exists(fileName))
+				throw new FileNotFoundException("The free agent data could not be found",fileName);
+				
+			List<Employee> contents;
+			
+			using(FileStream fstream = new FileStream(fileName,FileMode.Open))
+			{
+				XmlSerializer serializer = new XmlSerializer(typeof(List<Employee>));
+				contents = (List<Employee>)serializer.Deserialize(fstream);
+			}
+			
+			return contents;
+		}
+    }
+}

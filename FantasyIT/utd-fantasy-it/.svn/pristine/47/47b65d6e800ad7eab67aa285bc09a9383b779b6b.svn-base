@@ -1,0 +1,54 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace FITPrototype
+{
+    /// <summary>
+    /// Interaction logic for LeagueRules.xaml
+    /// </summary>
+    public partial class LeagueRules : Page
+    {
+        public LeagueRules()
+        {
+            LeagueDataParser ldp = new LeagueDataParser("leaguerules.xml");
+            League game = ldp.StoredRules;
+            InitializeComponent();
+
+            String teamR="error reading rules";
+            String seasonR="seriously, there's a problem";
+
+            //team size, extras, x teams player is on, mutual match
+            teamR = "Team Size: " + game.MembersPerTeam +
+                    "\nExtras on team: " + game.ExtrasPerTeam +
+                    "\nMutual Matching: " + game.MutualMatching +
+                    "\nPlayer Recurrence: " + game.SimultaneousTeams;
+
+            //game night, playoff size, bowl project, season duration, break duration
+            seasonR = "Game Night: " + game.GameNight +
+                        "\nDraft Day: " + game.DraftTime +
+                        "\nSeason Start: " + game.SeasonStart +
+                        "\nSeason End :" + game.SeasonEnd +            
+                        "\nTeams in Playoffs: " + game.PlayoffTeams +
+                        "\nPlayoff Start: " + game.PlayoffStart +
+                        "Superbowl Project: " + game.TeamSuperbowl;
+
+            teamRules.Text = teamR;
+            seasonRules.Text = seasonR;
+
+            //IMPLEMENT CALENDAR STUFF
+            //draft day, season play, game days, playoffs, playoff break
+        }
+    }
+}

@@ -1,0 +1,150 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace FITPrototype
+{
+	//[Serializable()]
+    public class Employee : IComparable<Employee>, ISerializable
+    {
+        private String name;
+        private int points, role;
+		private String teamName;
+		
+		public String Name
+		{
+			get
+			{
+				return name;
+			}
+			set
+			{
+				name = value;
+			}
+		}
+		public int Points
+		{
+			get
+			{
+				return points;
+			}
+			set
+			{
+				points = value;
+			}
+		}
+		public int Role
+		{
+			get
+			{
+				return role;
+			}
+			set
+			{
+				role = value;
+			}
+		}
+		public String Team
+		{
+			get
+			{
+				return teamName;
+			}
+			set
+			{
+				teamName = value;
+			}
+		}
+		
+        public Employee()
+        {
+            name = "John Q. Public";
+            points = 0;
+            role = 0;
+			teamName = "Lonely Hearts Club";
+        }
+        public Employee(String n, int p, String t)
+        {
+            name = n;
+            points = p;
+			teamName = t;
+        }
+		public Employee(String n, int p, int r)
+		{
+			name = n;
+			points = p;
+			role = r;
+		}
+        public Employee(String n, int p, int r, String t)
+        {
+            name = n;
+            points = p;
+            role = r;
+			teamName = t;
+        }
+		public Employee(SerializationInfo info,StreamingContext ctxt)
+		{
+			name = (string)info.GetValue("EmployeeName",typeof(string));
+			points = (int)info.GetValue("EmployeePoints",typeof(int));
+			role = (int)info.GetValue("EmployeeRole",typeof(int));
+			teamName = (string)info.GetValue("EmployeeTeam",typeof(string));
+		}
+        public String GetName()
+        {
+            return name;
+        }
+        public int GetPoints()
+        {
+            return points;
+        }
+        public int GetRole()
+        {
+            return role;
+        }
+		public String GetTeam()
+		{
+			return teamName;
+		}
+        public void SetName(String s)
+        {
+            name = s;
+        }
+        public void SetPoints(int p)
+        {
+            points = p;
+        }
+        public void SetRole(int r)
+        {
+            role = r;
+        }
+		public void SetTeam(String t)
+		{
+			teamName = t;
+		}
+		//method used to retrieve serialized data
+		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+		{
+			info.AddValue("EmployeeName",name);
+			info.AddValue("EmployeePoints",points);
+			info.AddValue("EmployeeRole",role);
+			info.AddValue("EmployeeTeam",teamName);
+		}
+        public override String ToString()
+        {
+            String s = name + " : " + points;
+            return s;
+        }
+		
+		public int CompareTo(Employee e)
+		{
+			if(e==null)
+				return 1;
+			//return this.points.CompareTo(e.GetPoints());
+            return e.GetPoints().CompareTo(this.GetPoints());
+        }
+    }
+}

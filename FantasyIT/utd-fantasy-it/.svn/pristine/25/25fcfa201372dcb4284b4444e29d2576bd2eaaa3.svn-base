@@ -1,0 +1,241 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
+
+namespace FITPrototype
+{
+    public class Team : IComparable<Team>,ISerializable
+    {
+        #region Class members
+        private List<Employee> members;
+        private int total, place;
+        private String teamName;
+
+        public List<Employee> Members
+        {
+            get
+            {
+                return members;
+            }
+        }
+        public int Total
+        {
+            get
+            {
+                return total;
+            }
+            set
+            {
+                total = value;
+            }
+        }
+        public int Place
+        {
+            get
+            {
+                return place;
+            }
+            set
+            {
+                place = value;
+            }
+        }
+        public String TeamName
+        {
+            get
+            {
+                return teamName;
+            }
+            set
+            {
+                teamName = value;
+            }
+        }
+        #endregion
+
+        #region Constructors
+        public Team()
+        {
+            teamName = "Unnamed Team";
+            members = new List<Employee>();
+            total = 0;
+            place = 0;
+        }
+        public Team(String n)
+        {
+            teamName = n;
+            members = new List<Employee>();
+            total = 0;
+            place = 0;
+        }
+        public Team(List<Employee> empList)
+        {
+            members = empList;
+			teamName = "Team "+members[0].GetName();
+            foreach (Employee e in members)
+			{
+                total += e.GetPoints();
+				e.SetTeam(teamName);
+            }
+			place = 0;
+            
+        }
+        public Team(String n, List<Employee> empList)
+        {
+            teamName = n;
+            members = empList;
+            foreach (Employee e in members)
+			{
+                total += e.GetPoints();
+				e.SetTeam(teamName);
+            }
+			place = 0;
+        }
+        public Team(List<Employee> empList, int p)
+        {
+            members = empList;
+            foreach (Employee e in members)
+                total += e.GetPoints();
+            place = p;
+            teamName = "Team " + members[0].GetName();
+        }
+        public Team(String n, List<Employee> empList, int p)
+        {
+            teamName = n;
+            members = empList;
+            foreach (Employee e in members)
+                total += e.GetPoints();
+            place = p;
+        }
+        public Team(SerializationInfo info, StreamingContext ctxt)
+        {
+            teamName = (string)info.GetValue("TeamName", typeof(string));
+            members = (List<Employee>)info.GetValue("TeamMembers", typeof(List<Employee>));
+            place = (int)info.GetValue("TeamPlace", typeof(int));
+        }
+        #endregion
+
+        public void AddMember(Employee e)
+        {
+            members.Add(e);
+            total += e.GetPoints();
+        }
+        public void AddMembers(List<Employee> es)
+        {
+            members.AddRange(es);
+            foreach (Employee e in es)
+                total += e.GetPoints();
+        }
+        public void RemoveMember(String s)
+        {
+            Employee m = members.Find(x => x.GetName() == s);
+            members.Remove(m);
+            total -= m.GetPoints();
+        }
+		public void RemoveAll()
+		{
+            members.Clear();
+		}
+        #region Output functions
+		
+		public void GetObjectData(SerializationInfo info, StreamingContext ctxt)
+		{
+			info.AddValue("TeamName",teamName);
+			info.AddValue("TeamMembers",members);
+			info.AddValue("TeamPlace",place);
+		}
+		
+        public override String ToString()
+        {
+            String s = teamName + " : " + place;
+            switch(place%10)
+            {
+                case 1: s += "st"; break;
+                case 2: s += "nd"; break;
+                case 3: s += "rd"; break;
+                default: s += "th"; break;
+            }
+            s += " : " + total + " points\n";
+            foreach (Employee e in members)
+                s += e.ToString() +"\n";
+            return s;
+        }
+        public List<Object> ToGrid()
+        {
+            List<Object> li = new List<Object>();
+            li.Add(teamName);
+            li.Add(place);
+            li.Add(total);
+            foreach (Employee e in members)
+                li.Add(e.GetName());
+            return li;
+        }
+        #endregion
+
+        public int CompareTo(Team t)
+        {
+            if (t == null)
+                return 1;
+            return this.total.CompareTo(t.Total);
+        }
+		
+		public int GetPointsGainedForWeek(int k)
+		{
+			int gained = 0;
+			foreach( Employee e in members )
+				gained += e.GetScoreOfWeek(k);
+				
+			return gained;
+		}
+
+       /* public override String ToString()
+        {
+            String s = "";
+            foreach(Employee e in members)
+            {
+                s += e.ToString();
+            }
+            return s;
+        }*/
+
+        #region Equatable methods
+        public override int GetHashCode()
+        {
+            return members.GetHashCode() ^ teamName.GetHashCode() ^ total.GetHashCode() ^ place.GetHashCode();
+        }
+
+        public override bool Equals(Object obj)
+        {
+            if (obj == null)
+                return false;
+            return obj is Team && this == (Team)obj;
+        }
+
+        public static bool operator ==(Team a, Team b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals(a, b))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null))
+            {
+                return false;
+            }
+
+            return a.Members == b.Members && a.Total == b.Total && a.Place == b.Place && a.TeamName == b.TeamName;
+        }
+
+        public static bool operator !=(Team a, Team b)
+        {
+            return !(a == b);
+        }
+        #endregion
+    }
+}

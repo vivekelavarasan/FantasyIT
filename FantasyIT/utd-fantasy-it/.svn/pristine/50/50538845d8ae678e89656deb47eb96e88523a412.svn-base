@@ -1,0 +1,99 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace FITPrototype
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class Leaderboard : Page
+    {
+        public struct TeamsData
+        {
+            public int teamRank { set; get; }
+            public string teamName { set; get; }
+            public int teamScore { set; get; }
+			public string teamProgress { set; get; }
+        }
+		
+		public struct PlayersData
+		{
+			public int playerRank {set;get;}
+			public string playerName {set;get;}
+			public int playerScore {set;get;}
+			public string playerProgress{ set; get; }
+		}
+        
+        public Leaderboard()
+        {
+			TeamDataParser teamParser = new TeamDataParser();
+			List<Team> teamList = teamParser.GetTeams();
+			List<Employee> employeeList = new List<Employee>();
+			
+			foreach(Team t in teamList)
+			{
+				employeeList.AddRange(t.Members);
+			}
+			
+			employeeList.Sort();
+
+            InitializeComponent();
+            DataGridTextColumn tCol1 = new DataGridTextColumn();
+            DataGridTextColumn tCol2 = new DataGridTextColumn();
+            DataGridTextColumn tCol3 = new DataGridTextColumn();
+			DataGridTextColumn tCol4 = new DataGridTextColumn();
+            teamsDataGrid.Columns.Add(tCol1);
+            teamsDataGrid.Columns.Add(tCol2);
+            teamsDataGrid.Columns.Add(tCol3);
+			teamsDataGrid.Columns.Add(tCol4);
+            tCol1.Binding = new Binding("teamRank");
+            tCol2.Binding = new Binding("teamName");
+            tCol3.Binding = new Binding("teamScore");
+			tCol4.Binding = new Binding("teamProgress");
+            tCol1.Header = "Rank";
+            tCol2.Header = "Team Name";
+            tCol3.Header = "Score";
+			tCol4.Header = "Progress";
+			
+			DataGridTextColumn pCol1 = new DataGridTextColumn();
+			DataGridTextColumn pCol2 = new DataGridTextColumn();
+			DataGridTextColumn pCol3 = new DataGridTextColumn();
+			DataGridTextColumn pCol4 = new DataGridTextColumn();
+			playersDataGrid.Columns.Add(pCol1);
+			playersDataGrid.Columns.Add(pCol2);
+			playersDataGrid.Columns.Add(pCol3);
+			playersDataGrid.Columns.Add(pCol4);
+			pCol1.Binding = new Binding("playerRank");
+			pCol2.Binding = new Binding("playerName");
+			pCol3.Binding = new Binding("playerScore");
+			pCol4.Binding = new Binding("playerProgress");
+			pCol1.Header = "Rank";
+			pCol2.Header = "Player Name";
+			pCol3.Header = "Score";
+			pCol4.Header = "Progress";
+			
+			for(int j = 0; j<teamList.Count; j++)
+			{
+				teamsDataGrid.Items.Add(new TeamsData{teamRank = (j+1), teamName = teamList[j].TeamName, teamScore = teamList[j].Total, teamProgress = "+"+teamList[j].GetPointsGainedForWeek(0) });
+			}
+			
+			for(int k = 0; k<employeeList.Count; k++)
+			{
+				playersDataGrid.Items.Add(new PlayersData{playerRank = (k+1), playerName = employeeList[k].GetName(), playerScore = employeeList[k].GetPoints(), playerProgress = "+"+employeeList[k].GetScoreOfWeek(0) });
+			}   
+        
+        }
+    }
+}

@@ -1,0 +1,86 @@
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\bin\Debug\FITPrototype.exe.config
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\bin\Debug\FITPrototype.exe
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\bin\Debug\FITPrototype.pdb
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\obj\Debug\MainWindow.baml
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\obj\Debug\MainWindow.g.cs
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\obj\Debug\App.g.cs
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\obj\Debug\FITPrototype_MarkupCompile.cache
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\obj\Debug\FITPrototype.g.resources
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\obj\Debug\FITPrototype.Properties.Resources.resources
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\obj\Debug\FITPrototype.csproj.GenerateResource.Cache
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\obj\Debug\FITPrototype.exe
+C:\Users\Jeff-\Documents\FITPrototype\FITPrototype\obj\Debug\FITPrototype.pdb
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\bin\Debug\FITPrototype.exe.config
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.exe
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.pdb
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\bin\Debug\FITPrototype.exe
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\bin\Debug\FITPrototype.pdb
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.csprojResolveAssemblyReference.cache
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\MainWindow.baml
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\MainWindow.g.cs
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\App.g.cs
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\FITPrototype_MarkupCompile.cache
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.g.resources
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.Properties.Resources.resources
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.csproj.GenerateResource.Cache
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\MainMenu.baml
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\MainMenu.g.cs
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\Leaderboard.baml
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\Leaderboard.g.cs
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\bin\Debug\FITPrototype.exe.config
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.exe
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.pdb
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\bin\Debug\FITPrototype.exe
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\bin\Debug\FITPrototype.pdb
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.csprojResolveAssemblyReference.cache
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\Leaderboard.baml
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\MainWindow.baml
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\MainMenu.baml
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\Leaderboard.g.cs
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\MainWindow.g.cs
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\MainMenu.g.cs
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\App.g.cs
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\FITPrototype_MarkupCompile.cache
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.g.resources
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.Properties.Resources.resources
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\FITPrototype.csproj.GenerateResource.Cache
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\ManageTeam.baml
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\ManageTeam.g.cs
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\SetupScreen.baml
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\SetupScreen.g.cs
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\ManageTeam.baml
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\ManageTeam.g.cs
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\SetupScreen.baml
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\SetupScreen.g.cs
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\CreateTeam.baml
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\CreateTeam.g.cs
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\LeagueRules.baml
+C:\Users\Brian Widder\FantasyIT\FITPrototype\FITPrototype\obj\Debug\LeagueRules.g.cs
+<<<<<<< .mine
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\bin\Debug\FITPrototype.exe.config
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\FITPrototype.exe
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\FITPrototype.pdb
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\FITPrototype.csprojResolveAssemblyReference.cache
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\CreateTeam.baml
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\Leaderboard.baml
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\LeagueRules.baml
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\MainWindow.baml
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\MainMenu.baml
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\ManageTeam.baml
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\SetupScreen.baml
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\CreateTeam.g.cs
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\Leaderboard.g.cs
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\LeagueRules.g.cs
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\MainWindow.g.cs
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\MainMenu.g.cs
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\ManageTeam.g.cs
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\SetupScreen.g.cs
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\App.g.cs
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\FITPrototype_MarkupCompile.cache
+C:\Users\Vivek\Documents\CS PROJECT\utd-fantasy-it\FITPrototype\FITPrototype\obj\Debug\FITPrototype.g.resources
+=======
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\CreateTeam.baml
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\LeagueRules.baml
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\CreateTeam.g.cs
+C:\Users\Jeff-\Documents\Fantasy IT\FITPrototype\FITPrototype\obj\Debug\LeagueRules.g.cs
+>>>>>>> .r31

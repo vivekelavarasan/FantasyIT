@@ -1,0 +1,191 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace FITPrototype
+{
+    /// <summary>
+    /// Interaction logic for SetupScreen.xaml
+    /// </summary>
+    public partial class SetupScreen : Page
+    { 
+	
+        //League lg;
+        LeagueDataParser ldp;
+		
+        public SetupScreen()
+        {
+            ldp = new LeagueDataParser("leaguerules.xml");
+            //lg = ldp.StoredRules;
+            InitializeComponent();
+
+            if (ldp.initialized)
+                done.Content = "Apply Changes";
+            else
+                done.Content = "Start League";
+				
+			done.Content = "Start League";
+
+           
+			cb_teamSize.Items.Add(1);
+			cb_teamSize.Items.Add(2);
+			cb_teamSize.Items.Add(3);
+			cb_teamSize.Items.Add(4);
+			cb_teamSize.Items.Add(5);
+			cb_teamSize.Items.Add(6);
+			cb_teamSize.SelectionChanged +=  TeamSize_SelectionChanged;
+			
+			cb_teamExtra.Items.Add(0);
+			cb_teamExtra.Items.Add(1);
+			cb_teamExtra.Items.Add(2);
+			cb_teamExtra.SelectionChanged += TeamExtras_SelectionChanged;
+			
+			cb_gameNight.Items.Add("Sunday");
+			cb_gameNight.Items.Add("Monday");
+			cb_gameNight.Items.Add("Tuesday");
+			cb_gameNight.Items.Add("Wednesday");
+			cb_gameNight.Items.Add("Thursday");
+			cb_gameNight.Items.Add("Friday");
+			cb_gameNight.Items.Add("Saturday");
+			cb_gameNight.SelectionChanged += GameNight_SelectionChanged;
+			
+			cb_playerExclusive.Items.Add(1);
+			cb_playerExclusive.Items.Add(2);
+			cb_playerExclusive.Items.Add(3);
+			cb_playerExclusive.SelectionChanged += PlayerExclusivity_SelectionChanged;
+			
+			cb_playoffSize.Items.Add(4);
+			cb_playoffSize.Items.Add(8);
+			cb_playoffSize.Items.Add(16);
+			cb_playoffSize.SelectionChanged += PlayoffSize_SelectionChanged;
+			
+			for(int n = 1; n<=52; n++)
+			{	
+				cb_seasonDuration.Items.Add(n);
+			}
+			cb_seasonDuration.SelectionChanged += SeasonDuration_SelectionChanged;
+			
+			cb_playoffBreak.Items.Add(0);
+			cb_playoffBreak.Items.Add(1);
+			cb_playoffBreak.Items.Add(2);
+			cb_playoffBreak.Items.Add(3);
+			cb_playoffBreak.Items.Add(4);
+			cb_playoffBreak.Items.Add(5);
+			cb_playoffBreak.SelectionChanged += PlayoffBreak_SelectionChanged;
+			
+			dp_seasonStartDate.SelectedDateChanged += StartDate_SelectionChanged;
+			
+			dp_draftDate.SelectedDateChanged += DraftDay_SelectionChanged;
+			
+			rb_mutualMatchYes.Checked += MutualMatching_SelectionChanged;
+			
+			rb_superbowlYes.Checked += Superbowl_SelectionChanged;
+        }
+
+        private void cancel_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void done_Click(object sender, RoutedEventArgs e)
+        {
+			ldp.SaveRules(ldp.StoredRules,"leaguerules.xml");
+        }
+		
+		private void TeamSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			ldp.StoredRules.MembersPerTeam = (int)cb_teamSize.SelectedValue;
+		}
+		
+		private void TeamExtras_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			ldp.StoredRules.ExtrasPerTeam = (int)cb_teamExtra.SelectedValue;
+		}
+		
+		private void GameNight_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			String day = (String)cb_gameNight.SelectedValue;
+			byte val = 8;
+			switch(day)
+			{
+				case "Thursday": 
+					val = 0;
+				break;
+				case "Sunday":
+					val = 1;
+				break;
+				case "Monday":
+					val = 2;
+				break;
+				case "Tuesday":
+					val = 3;
+				break;
+				case "Wednesday":
+					val = 4;
+				break;
+				case "Friday":
+					val = 5;
+				break;
+				case "Saturday":
+					val = 6;
+				break;
+			}
+		
+			ldp.StoredRules.GameNight = val;
+		}
+		
+		private void PlayerExclusivity_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			int temp = (int)cb_playerExclusive.SelectedValue;
+			ldp.StoredRules.SimultaneousTeams = (byte)temp;
+		}
+		
+		private void PlayoffSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			int temp = (int)cb_playoffSize.SelectedValue;
+			ldp.StoredRules.PlayoffTeams = (byte)temp;
+		}
+		
+		private void SeasonDuration_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			//What's the point of this if the user already chooses start/end dates?
+		}
+		
+		private void PlayoffBreak_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+		}
+		
+		private void DraftDay_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			ldp.StoredRules.DraftTime = (DateTime)dp_draftDate.SelectedDate;
+		}
+		
+		private void StartDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			ldp.StoredRules.SeasonStart = (DateTime)dp_seasonStartDate.SelectedDate;
+		}
+		
+		private void Superbowl_SelectionChanged(object sender,RoutedEventArgs e)
+		{
+			ldp.StoredRules.TeamSuperbowl = (bool)rb_superbowlYes.IsChecked;
+		}
+		
+		private void MutualMatching_SelectionChanged(object sender,RoutedEventArgs e)
+		{
+			ldp.StoredRules.MutualMatching = (bool)rb_mutualMatchYes.IsChecked;
+		}
+		
+    }
+}
